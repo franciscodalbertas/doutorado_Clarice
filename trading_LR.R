@@ -139,3 +139,5 @@ h_1446 <- df3[df3$id_hexagono=="1446",]
 # parece Ok, falta agora para os hexagonos q a area de deficit eh menor q o 
 # excedente, pra fechar!
 
+nrow(df3[is.na(df3$valor_comp),])
+
