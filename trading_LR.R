@@ -41,11 +41,7 @@ df2 <-df %>% arrange(desc(preco_CO))
 
 #==== encontrando hexagonos equivalentes =======================================
 
-# aqui estou considerando apenas compensacao
-
-
-i=317 #bom pra testar
-i=1574 # id 1446
+# aqui estou considerando apenas restauracao de deficit de RL
 
 df3 <- df2 # df para ser modificado pela funcao!
 
@@ -53,9 +49,7 @@ df3 <- df2 # df para ser modificado pela funcao!
 # limite superior do for
 
 lim <- nrow(df2)
-lim <- 60
-
-i=61
+i=1
 
 for(i in seq(1,lim)){
   
@@ -120,7 +114,7 @@ for(i in seq(1,lim)){
           area_compensada
         # valor compensado
         df3$valor_comp[df3$id_hexagono==hex$id_hexagono] <- area_compensada*hex$preco_compensacao
-        df3$id_hex_def[df3$id_hexagono==hex$id_hexagono] <- paste(eq2$id_hexagono,collapse = ",")
+        df3$id_hex_def[df3$id_hexagono==hex$id_hexagono] <- paste(def$id_hexagono,collapse = ",")
         #print("vai dar certo")
         # descontando valor deficit! compensa o deficit todo, logo é 0
         df3$area_deficit_oficial[df3$id_hexagono %in%def$id_hexagono] <- 0
@@ -133,3 +127,6 @@ for(i in seq(1,lim)){
 # salvando dados pos compensacao em nova planilha
 
 write.csv(df3,"Tabela_variaveis_cenarios_3atributos_pos_comp.csv",row.names = F)
+
+
+
